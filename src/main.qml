@@ -1,11 +1,13 @@
 import QtQuick
 import QtQuick.Controls 2.5
 
-Window {
+ApplicationWindow {
     id: shell
     visible: true
     visibility: Window.Maximized
     flags: Qt.Window | Qt.FramelessWindowHint
+    width: 1080
+    height: 720
     minimumHeight: 480
     minimumWidth: 720
     color: "#070709"
@@ -118,5 +120,9 @@ Window {
         width: parent.width
         height: parent.height - y
         color: "#29292d"
+
+        Test {
+            id:img
+        }
     }
 }

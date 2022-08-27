@@ -1,10 +1,11 @@
 import QtQuick
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.5
 
 ApplicationWindow {
     id: shell
     visible: true
-    visibility: Window.Maximized
+    // visibility: Window.Maximized
     flags: Qt.Window | Qt.FramelessWindowHint
     width: 1080
     height: 720
@@ -12,7 +13,7 @@ ApplicationWindow {
     minimumWidth: 720
     color: "#070709"
 
-    property real bw: 1
+    property real bw: 5
 
     function toggleMaximized() {
         if (shell.visibility === Window.Maximized) {
@@ -71,65 +72,66 @@ ApplicationWindow {
                          }
     }
 
-    ToolBar {
-        id: toolBar
-        width: parent.width - 2 * bw
-        height: 30
-        x: bw
-        y: bw
+    Column {
+        anchors.margins: bw
+        spacing: 2
+        anchors.fill: parent
 
-        Keys.enabled: true
-        focus: true
-        Keys.onEscapePressed: {
-            shell.close()
-        }
+        ToolBar {
+            id: toolBar
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 30
 
-        background: Rectangle {
-            color: "transparent"
-        }
+            Keys.enabled: true
+            focus: true
+            Keys.onEscapePressed: {
+                shell.close()
+            }
 
-        Item {
-            anchors.fill: parent
-            Row {
-                anchors.verticalCenter: parent.verticalCenter
-                spacing: 10
-                Image {
-                    id: ico
-                    width: 18
-                    height: 18
-                    source: "qrc:/assets/logo.png"
+            background: Rectangle {
+                color: "transparent"
+            }
+
+            Item {
+                anchors.fill: parent
+                Row {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 10
+                    Image {
+                        id: ico
+                        width: 18
+                        height: 18
+                        source: "qrc:/assets/logo.png"
+                    }
+
+                    Label {
+                        text: "铁马冰河"
+                        elide: Label.ElideRight
+                        color: "white"
+                    }
                 }
 
-                Label {
-                    text: "铁马冰河"
-                    elide: Label.ElideRight
-                    color: "white"
+                TapHandler {
+                    onTapped: if (tapCount === 2)
+                                  toggleMaximized()
+                    gesturePolicy: TapHandler.DragThreshold
+                }
+                DragHandler {
+                    grabPermissions: TapHandler.CanTakeOverFromAnything
+                    onActiveChanged: if (active) {
+                                         shell.startSystemMove()
+                                     }
                 }
             }
-
-            TapHandler {
-                onTapped: if (tapCount === 2)
-                              toggleMaximized()
-                gesturePolicy: TapHandler.DragThreshold
-            }
-            DragHandler {
-                grabPermissions: TapHandler.CanTakeOverFromAnything
-                onActiveChanged: if (active) {
-                                     shell.startSystemMove()
-                                 }
-            }
         }
-    }
 
-    Rectangle {
-        id: rect
-        y: toolBar.height
-        width: parent.width
-        height: parent.height - y
-        color: "#29292d"
-
-        Test {
-            id: img
+        Rectangle {
+            id: rect
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 100
+            color: "#29292d"
         }
     }
 }

@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>Test.qml</file>
         <file>assets/logo.png</file>
+        <file>TitleBar.qml</file>
     </qresource>
 </RCC>

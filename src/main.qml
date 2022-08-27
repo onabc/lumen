@@ -89,17 +89,24 @@ ApplicationWindow {
         }
 
         Item {
-
-            Label {
-                text: "Title"
-                elide: Label.ElideRight
+            anchors.fill: parent
+            Row {
                 anchors.verticalCenter: parent.verticalCenter
-                background: Rectangle {
-                    color: "red"
+                spacing: 10
+                Image {
+                    id: ico
+                    width: 18
+                    height: 18
+                    source: "qrc:/assets/logo.png"
+                }
+
+                Label {
+                    text: "铁马冰河"
+                    elide: Label.ElideRight
+                    color: "white"
                 }
             }
 
-            anchors.fill: parent
             TapHandler {
                 onTapped: if (tapCount === 2)
                               toggleMaximized()
@@ -122,7 +129,7 @@ ApplicationWindow {
         color: "#29292d"
 
         Test {
-            id:img
+            id: img
         }
     }
 }

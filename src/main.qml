@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.5
+import QtQuick.Shapes 1.15
+import Qt5Compat.GraphicalEffects as GE
 
 ApplicationWindow {
     id: shell
@@ -72,16 +74,15 @@ ApplicationWindow {
                          }
     }
 
-    Column {
+    ColumnLayout {
         anchors.margins: bw
         spacing: 2
         anchors.fill: parent
 
         ToolBar {
             id: toolBar
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: 30
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
 
             Keys.enabled: true
             focus: true
@@ -128,10 +129,10 @@ ApplicationWindow {
 
         Rectangle {
             id: rect
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: 100
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             color: "#29292d"
+            radius: 10
         }
     }
 }

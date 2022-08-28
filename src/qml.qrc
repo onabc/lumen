@@ -4,5 +4,7 @@
         <file>Test.qml</file>
         <file>assets/logo.png</file>
         <file>TitleBar.qml</file>
+        <file>IconSVG.qml</file>
+        <file>assets/close.svg</file>
     </qresource>
 </RCC>

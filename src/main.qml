@@ -113,6 +113,46 @@ ApplicationWindow {
                     }
                 }
 
+                Row {
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 10
+                   
+                    Button{
+                        width: 20
+                        height: 20
+                        display: AbstractButton.IconOnly
+                        icon.source: "qrc:/assets/close.svg"
+                        icon.width: 10
+                        icon.height: 10
+                        icon.color: "white"
+                        background: Rectangle{
+                            color: "transparent"
+                        }
+                        onClicked: {
+                            shell.close()
+                        }
+                    }
+                 /*
+                    Button {
+                        width: 20
+                        height: 20
+                        IconSVG {
+                            anchors.centerIn: parent
+                            width: 10
+                            height: 10
+                            source: "qrc:/assets/close.svg"
+                        }
+                        background: Rectangle{
+                            color: "transparent"
+                        }
+                        onClicked: {
+                            shell.close()
+                        }
+                    }
+                       */
+                }
+
                 TapHandler {
                     onTapped: if (tapCount === 2)
                                   toggleMaximized()

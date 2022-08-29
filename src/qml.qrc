@@ -6,5 +6,6 @@
         <file>TitleBar.qml</file>
         <file>IconSVG.qml</file>
         <file>assets/close.svg</file>
+        <file>ResizableRectangle.qml</file>
     </qresource>
 </RCC>

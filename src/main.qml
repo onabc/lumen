@@ -117,7 +117,8 @@ ApplicationWindow {
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 10
-                   
+
+                    /*
                     Button{
                         width: 20
                         height: 20
@@ -133,24 +134,25 @@ ApplicationWindow {
                             shell.close()
                         }
                     }
-                 /*
-                    Button {
-                        width: 20
-                        height: 20
+                */
+                    ToolButton {
+                        id: closeBtn
+                        width: 25
+                        height: 25
                         IconSVG {
                             anchors.centerIn: parent
                             width: 10
                             height: 10
                             source: "qrc:/assets/close.svg"
                         }
-                        background: Rectangle{
-                            color: "transparent"
+                        background: Rectangle {
+                            radius: 3
+                            color: closeBtn.hovered ? "#ae1c1c" : "transparent"
                         }
                         onClicked: {
                             shell.close()
                         }
                     }
-                       */
                 }
 
                 TapHandler {
@@ -168,11 +170,33 @@ ApplicationWindow {
         }
 
         Rectangle {
-            id: rect
+            id: container
             Layout.fillWidth: true
             Layout.fillHeight: true
             color: "#29292d"
-            radius: 10
+            radius: 5
+
+            Rectangle {
+                id: rect
+                x: 100
+                y: 100
+                width: 100
+                height: 100
+                color: "red"
+                MouseArea {
+                    anchors.fill: parent
+                    drag.target: rect
+                    drag.minimumX: 5
+                    drag.maximumX: container.width - rect.width - 5
+                    drag.minimumY: 5
+                    drag.maximumY: container.height - rect.height - 5
+                    drag.smoothed: false
+                }
+
+                ResizableRectangle {
+                    resizeTarget: rect //设置调整目标ID
+                }
+            }
         }
     }
 }
